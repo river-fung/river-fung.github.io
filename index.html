@@ -81,7 +81,8 @@ I'm also really cool and annoying :D
     let delay = estimatedDepartureTime ? Math.round((estimatedDepartureTime - scheduledDepartureTime) / 1000 / 60) : null
 
     let destination = data.runs[nextDeparture.run_ref].destination_name
-    nextTrain.textContent = `The next train from Riversdale Station is the ${formatHHMM(scheduledDepartureTime)} to ${destination} from Platform ${nextDeparture.platform_number}. ${delay === null ? '' : `It is ${delay === 0 ? 'on time' : `${Math.abs(delay)}min {delay > 0 ? 'late' : 'early'}.`}`}`
+
+    nextTrain.textContent = `The next train from Riversdale Station is the ${formatHHMM(scheduledDepartureTime)} to ${destination} from Platform ${nextDeparture.platform_number}. ${delay === null ? '' : `It is ${delay === 0 ? 'on time' : `${Math.abs(delay)}min ${delay > 0 ? 'late' : 'early'}.`}`}`
   })
 </script>
 </body>
