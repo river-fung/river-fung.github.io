@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>The Amazing River</title>
   <link rel="icon" type="image/x-icon" href="/favicon.png">
 </head>
@@ -34,8 +36,9 @@
   }
 
   function formatHHMM(date) {
+    let hour = date.getHours()
     let min = date.getMinutes()
-    return `${date.getHours()}:${min < 10 ? '0' + min : min}`
+    return `${hour < 10 ? '0' + hour : hour}:${min < 10 ? '0' + min : min}`
   }
 </script>
 <body>
