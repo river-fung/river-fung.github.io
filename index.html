@@ -64,12 +64,14 @@ I'm also really cool and annoying :D
     let nextDeparture = data.departures[0]
     if (!nextDeparture) return nextTrain.textContent = 'There are no trains departing Riversdale Station soon :('
     if (nextDeparture.flags.includes('RRB-RUN')) return nextTrain.textContent = 'There are no trains departing Riversdale Station as buses are replacing trains :('
+    if (!nextDeparture.platform_number) return nextTrain.textContent = 'There are no trains departing Riversdale Station soon :('
+
     let scheduledDepartureTime = new Date(nextDeparture.scheduled_departure_utc)
     let estimatedDepartureTime = nextDeparture.estimated_departure_utc ? new Date(nextDeparture.estimated_departure_utc) : null
     let delay = estimatedDepartureTime ? Math.round((estimatedDepartureTime - scheduledDepartureTime) / 1000 / 60) : null
 
     let destination = data.runs[nextDeparture.run_ref].destination_name
-    nextTrain.textContent = `The next train from Riversdale Station is the ${formatHHMM(scheduledDepartureTime)} ${destination}. ${delay === null ? '' : `It is ${delay === 0 ? 'on time' : `${delay}min late.`}`}`
+    nextTrain.textContent = `The next train from Riversdale Station is the ${formatHHMM(scheduledDepartureTime)} to ${destination} from Platform ${nextDeparture.platform_number}. ${delay === null ? '' : `It is ${delay === 0 ? 'on time' : `${Math.abs(delay)}min {delay > 0 ? 'late' : 'early'}.`}`}`
   })
 </script>
 </body>
